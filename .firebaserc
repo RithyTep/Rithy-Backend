@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "auxswot-project-02"
+  },
+  "targets": {
+    "auxswot-project-02": {
+      "hosting": {
+        "auxswot_project_02": [
+          "auxswot-project-02"
+        ]
+      }
+    }
+  }
+}

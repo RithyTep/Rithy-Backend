@@ -1,0 +1,114 @@
+<h2 mat-dialog-title>Add New House details!</h2>
+
+<div mat-dialog-content>
+  <form [formGroup]="HouseForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Discount Price</mat-label>
+      <input
+        formControlName="discountPrice"
+        matInput
+        placeholder="Enter Discount Price"
+      />
+      <mat-icon matSuffix>person_pin</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Original Price</mat-label>
+      <input
+        formControlName="originalPrice"
+        matInput
+        placeholder="Enter Original Price"
+      />
+      <mat-icon matSuffix>contact_phone</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>House Address</mat-label>
+      <input
+        formControlName="HouseAddress"
+        matInput
+        placeholder="Enter your House address"
+      />
+      <mat-icon matSuffix>place</mat-icon>
+    </mat-form-field>
+
+    <div class="container">
+      <div class="card">
+        <div class="card-header">Upload a image of your House.</div>
+        <div class="card-body">
+          <h5 class="card-title">Select a file for upload.</h5>
+          <input
+            id="file-upload"
+            type="file"
+            (change)="upload($event)"
+            accept="image/*"
+          />
+        </div>
+      </div>
+    </div>
+    <br />
+
+ 
+
+    <!-- <mat-form-field appearance="outline">
+      <mat-label>House Timings </mat-label>
+      <input
+        formControlName="HouseTimings"
+        matInput
+        placeholder="Enter your House timings"
+      />
+      <mat-icon matSuffix>access_time</mat-icon>
+      <mat-hint>For Ex. 9:00 AM - 8:30 PM</mat-hint>
+    </mat-form-field> -->
+
+    <!-- <mat-form-field class="example-chip-list" appearance="fill">
+      <mat-label>House Category</mat-label>
+      <mat-chip-grid 
+        #myChipGrid
+        aria-label="Category selection"
+        formControlName="HouseCategory"
+      >
+        <mat-chip
+          *ngFor="let category of categories.value"
+          (removed)="remove(category)"
+        >
+          {{ category }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input
+          placeholder="New category..."
+          [matChipInputFor]="myChipGrid"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)"
+        />
+      </mat-chip-grid>
+    </mat-form-field> -->
+
+    <mat-form-field appearance="outline">
+      <mat-label>House Details </mat-label>
+      <textarea
+        formControlName="HouseDescription"
+        matInput
+        placeholder="Enter your House description"
+      ></textarea>
+    </mat-form-field>
+  </form>
+</div>
+
+<div>
+  <div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="bluegrey" mat-dialog-close>Close</button>
+    <button
+      [disabled]="HouseForm.invalid"
+      style="margin-left: 10px"
+      mat-raised-button
+      color="primary"
+      (click)="addHouse()"
+    >
+      {{ btnCurrentVal }}
+    </button>
+  </div>
+</div>

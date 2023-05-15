@@ -1,0 +1,105 @@
+<!-- 
+    <div *ngIf="afAuth.authState | async as user">
+      <h3 style="font-size: 30px; color: white">
+        Welcome! Admin {{ user.displayName }}
+      </h3>
+    </div> -->
+
+
+<div class="filter-fx" style="margin-bottom: 50px">
+  <!-- standard -->
+  <!-- <mat-form-field style="margin-left: 40px" appearance="fill">
+    <mat-label>Filter</mat-label>
+    <input
+      matInput 
+      placeholder="Ex. NG Mart"
+      #input
+    />
+  </mat-form-field> -->
+
+<div class="wrapper">
+  <div class="label">Submit your search</div>
+  <div class="searchBar">
+    <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" (keyup)="applyFilter($event)" />
+    <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
+      <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+</div>
+<div class="container">
+  <div class="label" style="font-size: 15px;">Houses</div>
+    <ul class="cards" *ngIf="noHouseEntries === false">
+      <li class="card" *ngFor="let data of obs | async">
+        <mat-card class="example-card"  *ngIf="afAuth.authState | async as user">
+          <mat-card-header>
+            <div mat-card-avatar>
+              <img [src]="data.userImage" mat-card-avatar/>
+            </div>
+            <mat-card-title >{{ data.userName }}</mat-card-title>
+            <mat-card-subtitle>Admin</mat-card-subtitle>
+          </mat-card-header>
+       
+        <div class="zoom-img">
+          <img
+            id="galleryCardImgListingId133527"
+            [src]="data.HouseImage"
+            alt="Photo of House image"
+            loading="lazy"
+            class=""
+          />
+        </div>
+        <div class="btm">
+          <div class="btm-02">
+            <form class="btm-03">
+              <p class="text-p-01">
+                <span class="text-p-02">Current price: </span
+                ><span style="color: #202c4a" class="text-p-03">
+                  <span>${{ data.discountPrice }}</span> </span
+                ><span class="text-p-04">Original price: </span
+                ><span style="color: #202c4a" class="text-p-05"
+                  >${{ data.originalPrice }}</span
+                >
+              </p>
+            </form>
+            <span class="text-p-06">
+              {{ data.HouseAddress }}
+            </span>
+            <p class="text-p-07">{{ data.HouseDescription }}</p>
+          </div>
+        </div>
+        <div *ngIf="(afAuth.authState | async) && data.uid === uid"      style=" 
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; padding: 5px;" >
+          <button
+       
+            mat-raised-button
+            (click)="editHouse(data)"
+            color="primary"
+          >
+            Edit
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button mat-raised-button (click)="deleteHouse(data.id)" color="warn">
+            Delete
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+</mat-card>
+      </li>
+    </ul>
+    </div>
+<mat-paginator
+  [length]="100"
+  [pageSizeOptions]="[10, 25, 50, 100]"
+></mat-paginator>
+
+<div *ngIf="noHouseEntries === true">
+  <mat-card style="font-size: 20px; font-weight: 400; margin-bottom: 100px">
+    Looks like no House is present. Be the first to post the House :]</mat-card
+  >
+</div>
