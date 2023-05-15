@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
     const isAuthenticated = user ? true : false;
 
     if (!isAuthenticated) {
-      this.router.auxswot(['signin']);
+      this.router.navigate(['signin']);
     } else {
       this.dialog.open(DailogComponent, {
         width: '100%',
